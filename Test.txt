@@ -1,0 +1,12 @@
+This is a test of the first commit. If you are reading this, you have set up Github correctly.
+
+Once you have read this document, add your name to the check-in list to show that you have everything working correctly.
+
+Check In:
+1. Connor Brooks
+2.
+3.
+4.
+5.
+6.
+7.
