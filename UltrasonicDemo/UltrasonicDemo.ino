@@ -6,10 +6,10 @@
 	//PINS
 
 		//Input Pins
-			const int sonicInputPin = //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
+			const int sonicInputPin = 24;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
 
 		//Output Pins 
-			const int sonicTriggerPin = //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
+			const int sonicTriggerPin = 22;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
 
 	//GENERAL
 
@@ -23,6 +23,7 @@ void setup() {
 void loop() {
 	reading = getSonicDistance(sonicInputPin, sonicTriggerPin);
 	Serial.println(reading);	
+  delay(200);
 
 }
 
@@ -41,7 +42,7 @@ long getSonicDistance(int echoPin, int triggerPin){
 	digitalWrite(triggerPin,HIGH);
 	delayMicroseconds(300);
 	digitalWrite(triggerPin,LOW);
-	long duration = pulseIn(echoPin, HIGH,30000);
+	long duration = pulseIn(echoPin, HIGH,38000);
 	long distance = (duration*34029L)/2000000L;
 	distanceCM = distance;
 	if(distanceCM == 0){

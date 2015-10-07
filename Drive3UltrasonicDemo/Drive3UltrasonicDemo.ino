@@ -6,17 +6,17 @@
 	//PINS
 
 		//Input Pins
-			const int frontSonicInputPin =  //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
-			const int leftSonicInputPin =  //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
-			const int rightSonicInputPin =  //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
+			const int frontSonicInputPin = 31;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
+			const int leftSonicInputPin = 35;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
+			const int rightSonicInputPin = 33;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S ECHO HERE
 
 		//Output Pins 
-			const int frontSonicTriggerPin = //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
-			const int leftSonicTriggerPin = //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
-			const int rightSonicTriggerPin = //PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
+			const int frontSonicTriggerPin = 30;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
+			const int leftSonicTriggerPin = 34;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
+			const int rightSonicTriggerPin = 32;//PUT THE NUMBER OF THE PIN THAT IS CONNECTED TO THE SENSOR'S TRIGGER HERE
 
-			const int leftMotorPin = //LEFT MOTOR PIN HERE ---> NEEDS TO BE BETWEEN 2-13
-			const int rightMotorPin = //RIGHT MOTOR PIN HERE ---> NEEDS TO BE BETWEEN 2-13
+			const int leftMotorPin = 3;//LEFT MOTOR PIN HERE ---> NEEDS TO BE BETWEEN 2-13
+			const int rightMotorPin = 2;//RIGHT MOTOR PIN HERE ---> NEEDS TO BE BETWEEN 2-13
 	//GENERAL
 
 		long frontReading;
@@ -40,18 +40,20 @@ void loop() {
 	Serial.print(",\tRight: ");
 	Serial.println(rightReading);
 
-	if(frontReading > 50){
+	if(frontReading > 70){
 		//go forward
-		analogWrite(leftMotorPin, 100);
-		analogWrite(rightMotorPin, 100);
+		analogWrite(leftMotorPin, 200);
+		analogWrite(rightMotorPin, 200);
 	} else {
 		//turn whichever way has more space
 		if(rightReading > leftReading){
 			//turn right
-			analogWrite(leftMotorPin, 50);
+			analogWrite(leftMotorPin, 150);
+			analogWrite(rightMotorPin, 1);
 		} else{
 			//turn left
-			analogWrite(rightMotorPin, 50);
+			analogWrite(rightMotorPin, 150);
+			analogWrite(leftMotorPin, 1);
 		}
 	}
 
