@@ -42,30 +42,37 @@ while(True):
         if area > max_area:
             max_area = area
             best_contour = contour
+            rect = cv2.boundingRect(best_contour)
+            x,y,w,h = rect
+            cv2.rectangle(blur,(x,y),(x+w,y+h),(0,255,0),2)
 
     #draws rectangle
+    #print(best_contour)
+    '''
     rect = cv2.boundingRect(best_contour)
     x,y,w,h = rect
     cv2.rectangle(blur,(x,y),(x+w,y+h),(0,255,0),2)
+    '''
 
     #draws circle at center
     M = cv2.moments(best_contour)
     cx, cy = int(M['m10']/M['m00']), int(M['m01']/M['m00'])
     cv2.circle(blur, (cx, cy), 10, (0, 0, 255), -1)
 
+    #print(str(relative)) #prints location of centroid to the console
+    #cv2.putText(blur, (0, 50), (x,y), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
     #draws text, displays current x coord relative to the center of the frame
+    '''
     resHeight, resWidth = frame.shape[:2]
     resCenter = int(resWidth/2)
     relative = int(cx-resCenter)
-    #cv2.putText(blur, str(relative), (x,y), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
-    cv2.putText(blur, (0, 50), (x,y), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+    cv2.putText(blur, str(relative), (x,y), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+    '''
     #move towards center
-    '''
-    if relative > 0:
-        #go left
-    else:
-        #go right
-    '''
+    #if relative > 0:
+    #    #go left
+    #else:
+    #    #go right
 
 
     #shows all the frames/windows
@@ -73,12 +80,10 @@ while(True):
     cv2.imshow('threshold', thresh)
     cv2.imshow('contours', cntrs)
 
-    # Display the resulting frame/windows
-    if cv2.waitKey(1) & 0xFF == ord('2'):
-        cv2.imshow('black and white', gray)
-    if cv2.waitKey(1) & 0xFF == ord('3'):
-        cv2.imshow("Frame - Threshold", thresh)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    key = cv2.waitKey(1) & 0xFF
+
+    if key == ord("q"):
+        cv2.destroyAllWindows()
         break
 
 # When everything done, release the capture
